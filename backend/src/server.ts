@@ -1,9 +1,6 @@
-import express, { Request, Response } from "express";
+import app from "./app.js";
+import { env } from "./config/env.js";
 
-const app = express();
-
-app.get("/", (req: Request, res: Response) => {
-    res.send("Hello");
+app.listen(env.PORT, () => {
+    console.log(`Server is running on http://localhost:${env.PORT}`);
 });
-
-export default app;
