@@ -1,19 +1,31 @@
 import { Router } from "express";
-import { forgotPassword, login, logout, me, refreshToken, register, resetPassword } from "./auth.controller";
+import * as authController from "./auth.controller";
+import * as authValidation from "./auth.validation";
 import { authenticate } from "../../middlewares/auth.middleware";
 import { validate } from "../../middlewares/validate.middleware";
-import { loginSchema, registerSchema } from "./auth.validation";
+import * as authRateLimiter from "./auth.rate-limiters";
 
 const router = Router();
 
-router.post("/register", validate(registerSchema), register);
-router.post("/login", validate(loginSchema), login);
-router.post("/logout", authenticate, logout);
-router.post("/refresh-token", refreshToken);
+router.post("/register", authRateLimiter.registerRateLimiter, validate(authValidation.registerSchema), authController.register);
+router.post("/login", authRateLimiter.loginRateLimiter, validate(authValidation.loginSchema), authController.login);
+router.post("/logout", authenticate, authController.logout);
 
-router.post("/forgot-password", forgotPassword);
-router.post("/reset-password", resetPassword);
+router.post("/verify-email", validate(authValidation.verifyEmailSchema), authController.verifyEmail);
+router.post("/resend-verification-email", authRateLimiter.resendVerificationEmailRateLimiter, authenticate, authController.resendVerifyEmail);
 
-router.get("/me", authenticate, me);
+router.post("/refresh-token", authRateLimiter.refreshTokenRateLimiter, authController.refreshToken);
+
+router.post("/forgot-password", authRateLimiter.forgotPasswordRateLimiter, validate(authValidation.forgotPasswordSchema), authController.forgotPassword);
+router.post("/reset-password", authRateLimiter.resetPasswordRateLimiter, validate(authValidation.resetPasswordSchema), authController.resetPassword);
+
+router.post("/change-password", authenticate, validate(authValidation.resetPasswordSchema), authController.changePassword);
+router.get("/me", authenticate, authController.me);
+
+
+// TODO: Add other routes
+// router.patch("/profile", authenticate, authController.updateProfile);
+// router.delete("/delete-account", authenticate, authController.deleteAccount);
+
 
 export default router;

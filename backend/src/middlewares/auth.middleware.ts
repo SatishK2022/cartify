@@ -4,16 +4,14 @@ import { Request, Response, NextFunction } from "express";
 
 export const authenticate = (req: Request, res: Response, next: NextFunction) => {
     try {
-        const authHeader = req.headers.authorization;
+        const token = req.cookies.accessToken || req.headers.authorization?.split(" ")[1];
 
-        if (!authHeader?.startsWith("Bearer ")) {
+        if (!token) {
             return res.status(401).json({
                 success: false,
                 message: "Unauthorized",
             });
         }
-
-        const token = authHeader.split(" ")[1];
 
         const decoded = jwt.verify(
             token,

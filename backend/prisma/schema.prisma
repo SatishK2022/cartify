@@ -44,6 +44,14 @@ model User {
 
   refreshToken String?
 
+  // verify email
+  verifyEmailToken       String?
+  verifyEmailTokenExpiry DateTime?
+
+  // forgot password
+  forgotPasswordToken       String?
+  forgotPasswordTokenExpiry DateTime?
+
   addresses Address[]
   cart      Cart?
   orders    Order[]

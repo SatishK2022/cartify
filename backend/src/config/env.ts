@@ -11,12 +11,15 @@ const envSchema = z.object({
   ]),
 
   PORT: z.string(),
-
   DATABASE_URL: z.string(),
-
   JWT_SECRET: z.string(),
-
   REDIS_URL: z.string(),
+
+  SMTP_HOST: z.string(),
+  SMTP_PORT: z.string(),
+  SMTP_USER: z.string(),
+  SMTP_PASS: z.string(),
+  MAIL_FROM: z.string(),
 
   CLIENT_URL: z.string(),
 });
