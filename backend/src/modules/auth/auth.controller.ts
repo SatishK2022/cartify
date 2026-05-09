@@ -104,10 +104,3 @@ export const changePassword = asyncHandler(async (req: Request, res: Response) =
     );
 });
 
-export const me = asyncHandler(async (req: Request, res: Response) => {
-    const user = await authService.getProfile(req.user!.id);
-
-    res.status(200).json(
-        new ApiResponse("User fetched successfully", user)
-    );
-});

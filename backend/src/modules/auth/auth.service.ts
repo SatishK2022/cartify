@@ -409,25 +409,3 @@ export const changePassword = async (userId: string, payload: ChangePasswordInpu
     return true;
 }
 
-export const getProfile = async (userId: string) => {
-    const user = await prisma.user.findUnique({
-        where: {
-            id: userId
-        },
-        select: {
-            id: true,
-            name: true,
-            email: true,
-            role: true,
-            isVerified: true,
-            phone: true,
-            avatar: true
-        }
-    })
-
-    if (!user) {
-        throw new ApiError(400, "User not found");
-    }
-
-    return user;
-}

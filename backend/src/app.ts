@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { errorHandler } from "./middlewares/error.middleware";
 import authRoutes from "./modules/auth/auth.routes";
+import userRoutes from "./modules/user/user.routes";
 import cookieParser from "cookie-parser";
 import morgan from "morgan"
 import cors from "cors"
@@ -16,6 +17,7 @@ app.use(morgan("dev"));
 
 // Routes
 app.use("/api/v1/auth", authRoutes)
+app.use("/api/v1/user", userRoutes)
 
 
 app.get("/", (req: Request, res: Response) => {

@@ -19,8 +19,7 @@ router.post("/refresh-token", authRateLimiter.refreshTokenRateLimiter, authContr
 router.post("/forgot-password", authRateLimiter.forgotPasswordRateLimiter, validate(authValidation.forgotPasswordSchema), authController.forgotPassword);
 router.post("/reset-password", authRateLimiter.resetPasswordRateLimiter, validate(authValidation.resetPasswordSchema), authController.resetPassword);
 
-router.post("/change-password", authenticate, validate(authValidation.resetPasswordSchema), authController.changePassword);
-router.get("/me", authenticate, authController.me);
+router.post("/change-password", authenticate, validate(authValidation.changePasswordSchema), authController.changePassword);
 
 
 // TODO: Add other routes
