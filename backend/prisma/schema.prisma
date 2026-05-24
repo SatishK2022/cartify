@@ -112,6 +112,8 @@ model ProductImage {
 
   url       String
   fileId    String
+  thumbnail String
+
   isPrimary Boolean @default(false)
   sortOrder Int     @default(0)
 
@@ -145,6 +147,8 @@ model Product {
 
   isActive Boolean @default(true)
 
+  isDeleted Boolean @default(false)
+
   categoryId String
   category   Category @relation(fields: [categoryId], references: [id])
 
@@ -159,6 +163,8 @@ model Product {
   @@index([categoryId])
   @@index([title])
   @@index([slug])
+
+  @@unique([slug, isDeleted])
 }
 
 // CART

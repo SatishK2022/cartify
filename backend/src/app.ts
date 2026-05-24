@@ -3,6 +3,7 @@ import { errorHandler } from "./middlewares/error.middleware";
 import authRoutes from "./modules/auth/auth.routes";
 import userRoutes from "./modules/user/user.routes";
 import categoryRoutes from "./modules/category/category.routes";
+import productRoutes from "./modules/product/product.routes";
 import cookieParser from "cookie-parser";
 import morgan from "morgan"
 import cors from "cors"
@@ -20,9 +21,10 @@ app.use(morgan("dev"));
 app.use("/api/v1/auth", authRoutes)
 app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/category", categoryRoutes)
+app.use("/api/v1/product", productRoutes)
 
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (_: Request, res: Response) => {
     res.status(200).json({ 
         success: true, 
         message: "Cartify API - V1" 
