@@ -114,6 +114,7 @@ export const createProduct = async (payload: CreateProductInput, files: Express.
 };
 
 
+// TODO: Update the Logic of Updating Product Images
 export const updateProduct = async (id: string, payload: UpdateProductInput, files: Express.Multer.File[]) => {
     const { title, description, price, discountPrice, brand, stock, categoryId } = payload;
 

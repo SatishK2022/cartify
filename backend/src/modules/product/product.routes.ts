@@ -9,7 +9,7 @@ const router = Router();
 
 router
     .route("/")
-    .post(authenticate, authorize("ADMIN"), upload.array("images"), validate(productValidation.createProductSchema), productController.createProduct)
+    .post(authenticate, authorize("ADMIN"), upload.array("images", 10), validate(productValidation.createProductSchema), productController.createProduct)
     .get(validate(productValidation.getProductsSchema), productController.getProducts)
 
 
@@ -19,7 +19,7 @@ router.delete("/delete-permanently/:id",authenticate, authorize("ADMIN"), valida
 router
     .route("/:id")
     .get(authenticate, validate(productValidation.getProductSchema), productController.getProduct)
-    .put(authenticate, authorize("ADMIN"), upload.array("images"), validate(productValidation.updateProductSchema), productController.updateProduct)
+    .put(authenticate, authorize("ADMIN"), upload.array("images", 10), validate(productValidation.updateProductSchema), productController.updateProduct)
     .delete(authenticate, authorize("ADMIN"), validate(productValidation.deleteProductSchema), productController.deleteProduct)
 
 export default router;
