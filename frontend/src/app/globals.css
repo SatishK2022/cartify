@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Brand Colors ───────────────────────────────────────── */
+  --color-primary:        #EA580C;   /* Vibrant Orange-600           */
+  --color-primary-light:  #FED7AA;   /* Orange-100                   */
+  --color-primary-dark:   #C2410C;   /* Orange-700 (hover/active)    */
+
+  --color-secondary:      #1E3A5F;   /* Deep Navy                    */
+  --color-secondary-light:#DBEAFE;   /* Blue-100                     */
+  --color-secondary-dark: #152B47;   /* Darker Navy                  */
+
+  --color-accent:         #F97316;   /* Orange-500 (highlights)      */
+  --color-link:           #EA580C;   /* Same as primary for links    */
+
+  /* ── Status Colors ──────────────────────────────────────── */
+  --color-success:  #16A34A;
+  --color-warning:  #F59E0B;
+  --color-error:    #DC2626;
+
+  /* ── Neutral Background ─────────────────────────────────── */
+  --color-background: #FFFFFF;
+  --color-surface:    #F8FAFC;       /* Slightly cool white           */
+  --color-muted:      #F1F5F9;       /* Light Slate-100               */
+
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --shadow-sm:         0 1px 3px 0 rgba(0,0,0,0.07), 0 1px 2px -1px rgba(0,0,0,0.07);
+  --shadow-md:         0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.08);
+  --shadow-lg:         0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.08);
+  --shadow-xl:         0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+  --shadow-orange:     0 4px 14px 0 rgba(234,88,12,0.25);
+  --shadow-orange-lg:  0 8px 25px 0 rgba(234,88,12,0.3);
+
+  /* keep legacy aliases so existing code doesn't break */
+  --shadow-premium:    var(--shadow-sm);
+  --shadow-premium-md: var(--shadow-md);
+  --shadow-premium-lg: var(--shadow-lg);
+
+  /* ── Border Radius — modern, not sharp ─────────────────── */
+  --radius-xs:  2px;
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+:root {
+  --font-inter: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #111827;
+  font-feature-settings: "cv02","cv03","cv04","cv11";
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #fed7aa; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #f97316; }
+
+/* ── Number Input ────────────────────────────────────────── */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; }
